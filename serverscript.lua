@@ -1,3 +1,6 @@
+-- credit: https://github.com/VioPaige
+
+
 -- Services
 local http = game:GetService("HttpService")
 local rStorage = game:GetService("ReplicatedStorage")
