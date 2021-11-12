@@ -1,3 +1,6 @@
+// credit: https://github.com/VioPaige
+
+
 const express = require('express')
 const discord = require('discord.js')
 const Permissions = discord.Permissions
