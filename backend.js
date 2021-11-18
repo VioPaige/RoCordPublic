@@ -1,9 +1,10 @@
 // credit: https://github.com/VioPaige
 
-
 const express = require('express')
 const discord = require('discord.js')
 const Permissions = discord.Permissions
+const noblox = require('noblox.js')
+const path = require('path')
 
 const config = require('./config.json')
 
@@ -11,19 +12,22 @@ const application = express()
 
 
 
+application.set('views', path.join(__dirname, '/public'))
+application.set('view engine', 'ejs')
+
 application.use(express.static(__dirname + '/public'))
 application.use(express.urlencoded({extended: true}))
 application.use(express.json())
 
 const importantvariables = {
-    "rocordguildid": "<your discord server id>"
+    "rocordguildid": "908060795366162453"
 }
 
 
 
 
 const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES", "GUILD_VOICE_STATES"], partials: ["CHANNEL"] })
-client.login("< your discord bot token")
+client.login(config.token)
 
 client.on('ready', () => {
 
@@ -63,6 +67,20 @@ client.on('ready', () => {
         let channel = await client.channels.fetch(channelid)
         let message = await channel.messages.fetch(messageid)
         res.send(message.author)
+    })
+
+    application.get('/post/message/:name/:channelid/:content', async (req, res) => {
+        let { name, channelid, content } = req.params
+        let channel = await client.channels.fetch(channelid)
+
+        let messagecontent = `**${name} says:** ${content}`
+
+        channel.send(`${messagecontent}`).then(() => {
+            res.send("success")
+        }).catch(() => {
+            console.error
+        })
+
     })
     
     
