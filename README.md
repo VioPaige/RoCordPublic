@@ -10,5 +10,6 @@ serverscript.lua - script for in a serverscript in serverscriptservice
 button.lua - script to toggle between channels, put this in your channel button presets
 posting.lua - script for posting messages from roblox
 backend.js - script to be hosted with web hosting on your custom domain (you will need to edit the link in serverscript.lua to this)
+rocord.rblx - the full place including the basic gui prepared for the system
 
 Read the comments in the files!
